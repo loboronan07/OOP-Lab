@@ -42,21 +42,22 @@ class Stack {
 }
 
 public class exercise4 {
-	static void ask_choice() {
-		System.out.println("Avalilable Stack Operations: ");
-		System.out.println("\t1.Display Stack");
-		System.out.println("\t2.Push an Element");
-		System.out.println("\t3.Pop an Element");
-		System.out.println("\t4.Exit");
-		System.out.print("Enter your choice: ");
-	}
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Stack stack = new Stack();
 		stack.initialize();
 		int ele, choice;
-		ask_choice();
+		
+		System.out.println("Avalilable Stack Operations: ");
+		System.out.println("\t1.Display Stack");
+		System.out.println("\t2.Push an Element");
+		System.out.println("\t3.Pop an Element");
+		System.out.println("\t4.Exit");
+		
+		System.out.print("Enter operation(1-4): ");
 		choice = sc.nextInt();
+		System.out.println();
+		
 		while(choice != 4) { 
 			switch(choice) {
 				case 1:
@@ -77,8 +78,9 @@ public class exercise4 {
 					break;
 			}
 			System.out.println();
-			ask_choice();
+			System.out.print("Enter operation(1-4): ");
 			choice = sc.nextInt();
+			System.out.println();
 		}
 	}
 }

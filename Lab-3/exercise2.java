@@ -1,4 +1,13 @@
-/* */
+/* Lab Exercise 2
+	Create a class called Time that has instance variables to represent hours, minutes and seconds.
+	Provide the following methods:
+		i) To assign initial values to the Time object
+		ii) To display a Time object in the form of hh:mm:ss {24 hours format}
+		iii) To add 2 Time objects (the return type should be a Time) 
+		iv) To subtract 2 Time objects (the return type should be a Time)
+		v) To compare 2 Time objects and to determine if they are equal or if the first is greater 
+			or smaller than the second one
+*/
 
 import java.util.*;
 
@@ -8,67 +17,32 @@ class Time {
 	int sec;
 
 	void assign(int h, int m, int s) {
-		int totalsecs = h * 3600 + m * 60 + s;
-		this.hrs = h  * 
+		int totalsecs = Math.abs(h * 3600 + m * 60 + s);
+		this.hrs = (totalsecs / 3600) % 24;
+		totalsecs %= 3600;
+		this.min = totalsecs / 60;
+		totalsecs %= 60;
+		this.sec = totalsecs;
 	}
 
 	void display() {
 		System.out.println(this.hrs + ":" + this.min + ":" + this.sec);
 	}
 
-	void normalize() {
-		if (this.sec >= 60) {
-			this.min += this.sec / 60;
-			this.sec %= 60;
-		}
-
-		if (this.min >= 60) {
-			this.hrs += this.min / 60;
-			this.min %= 60;
-		}
-
-		if (this.hrs >= 24) {
-			this.hrs %= 24;
-		}
-	}
-
 	Time add(Time t) {
 		Time sum = new Time();
 		sum.assign(this.hrs + t.hrs, this.min + t.min, this.sec + t.sec);
-		sum.normalize();
 		return sum;
 	}
 
 	Time subtract(Time t) {
 		Time diff = new Time();
 		diff.assign(this.hrs - t.hrs, this.min - t.min, this.sec - t.sec);
-		diff.normalize();
 		return diff;
 	}
 
-	boolean compare(Time t) {
-		if (this.hrs > t.hrs) {
-			return true;
-		}
-		else if (this.hrs == t.hrs) {
-			if (this.min > t.min) {
-				return true;
-			}
-			else if (this.min == t.min) {
-				if(this.sec > t.sec) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			else {
-				return false;
-			}
-		}
-		else {
-			return false;
-		}
+	int compare(Time t) {
+		return (this.hrs * 3600 + this.min * 60 + this.sec) - (t.hrs * 3600 + t.min * 60 + t.sec);
 	}
 }
 
@@ -85,7 +59,6 @@ public class exercise2 {
 		s = sc.nextInt();
 
 		t1.assign(h, m, s);
-		t1.normalize();
 
 		System.out.print("Enter another time in hours, minutes and second(hh mm ss), t2: ");
 		h = sc.nextInt();
@@ -108,11 +81,14 @@ public class exercise2 {
 		diff.display();
 
 
-		if(t1.compare(t2)) {
+		if(t1.compare(t2) > 0) {
 			System.out.println("Time t1 is ahead of t2.");
 		}
-		else {
+		else if(t1.compare(t2) < 0){
 			System.out.println("Time t1 is behind t2.");
+		}
+		else {
+			System.out.println("Both the times are equivalent.");
 		}
 	}
 }
