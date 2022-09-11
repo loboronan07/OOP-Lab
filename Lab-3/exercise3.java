@@ -25,7 +25,7 @@ class Mixer {
 		this.n = sc.nextInt();
 		this.arr = new int[n];
 		System.out.print("Enter the array elements(in ascending order): ");
-		for(int i = 0; i < n; i++) {
+		for(int i = 0; i < this.n; i++) {
 			this.arr[i] = sc.nextInt();
 		}
 	}
