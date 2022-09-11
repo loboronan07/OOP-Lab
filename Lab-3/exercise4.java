@@ -1,4 +1,11 @@
-/* */
+/* Lab Exercise 4
+	Create a class called Stack for storing integers. The instance variables are:
+    		i) An integer an-ay
+    		ii) An integer for storing the top of stack (tos)
+       	Include methods for initializing tos, pushing an element to the stack and for popping an element from the stack. 
+	The push()method should also check for "stack overflow" and pop() should also check for "stack underflow". 
+	Use a display( ) method to display the contents of stack.
+ */
 
 import java.util.*;
 
@@ -10,8 +17,16 @@ class Stack {
 		this.tos = -1;
 	}
 
+	boolean isFull() {
+		return this.tos >= 100;
+	}
+	
+	boolean isEmpty() {
+		return this.tos < 0;
+	}	
+	
 	void push(int ele) {
-		if(tos >= 100) {
+		if(this.isFull()) {
 			System.out.println("Stack Overflow ...");
 			return;
 		}
@@ -20,7 +35,7 @@ class Stack {
 	}
 
 	void pop() {
-		if(tos < 0) {
+		if(this.isEmpty()) {
 			System.out.println("Stack Underflow ...");
 			return;
 		}
@@ -28,15 +43,15 @@ class Stack {
 	}
 
 	void display() {
-		if(tos >= 0) {
+		if(this.isEmpty()) {
+			System.out.println("Stack Empty");
+		}
+		else {
 			System.out.println("Stack elements are: ");
 			for(int i=0; i <= this.tos; i++) {
 				System.out.print(this.arr[i] + "\t");
 			}
 			System.out.println();
-		}
-		else {
-			System.out.println("Stack Empty");
 		}
 	}
 }
@@ -54,32 +69,28 @@ public class exercise4 {
 		System.out.println("\t3.Pop an Element");
 		System.out.println("\t4.Exit");
 		
-		System.out.print("Enter operation(1-4): ");
-		choice = sc.nextInt();
-		System.out.println();
-		
-		while(choice != 4) { 
-			switch(choice) {
-				case 1:
-					stack.display();
-					break;
-				case 2:
-					System.out.print("Enter the element to be pushed into the stack: ");
-					ele = sc.nextInt();
-					stack.push(ele);
-					break;
-				case 3:
-					stack.pop();
-					break;
-				case 4:
-					break;
-				default:
-					System.out.println("Invalid User Input, Try Again");
-					break;
-			}
-			System.out.println();
+		while(true) { 
 			System.out.print("Enter operation(1-4): ");
 			choice = sc.nextInt();
+			System.out.println();
+			
+			if(choice == 1) {
+				stack.display();
+			}
+			else if(choice == 2) {
+				System.out.print("Enter the element to be pushed into the stack: ");
+				ele = sc.nextInt();
+				stack.push(ele);
+			}
+			else if(choice == 3) {
+				stack.pop();
+			}
+			else if(choice == 4) {
+				break;
+			}
+			else {
+				System.out.println("Invalid User Input, Try Again");
+			}
 			System.out.println();
 		}
 	}
