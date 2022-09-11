@@ -1,12 +1,18 @@
-/* */
+/* Define a class to represent a complex number called Complex. Provide the following methods:
+    	i) To assign initial values to the Complex object.
+    	ii) To display a complex numberin a+ib format.
+    	iii) To add 2 complex numbers. (the return type should be Complex) iv) To subtract 2 complex numbers
+	Write a main method to test the class.
+	[Hint: Make use of Math.abs() during subtraction.] 
+*/
 
 import java.util.*;
 
 class Complex {
-	int re;
-	int im;
+	float re;
+	float im;
 
-	void assign(int re, int im) {
+	void assign(float re, float im) {
 		this.re = re;
 		this.im = im;
 	}
@@ -36,17 +42,17 @@ public class exercise1 {
 		Scanner sc = new Scanner(System.in);
 		Complex z1 = new Complex();
 		Complex z2 = new Complex();
-		int a, b;
+		float a, b;
 
 		System.out.print("Enter a Complex Number(real and imaginary parts), z1: ");
-		a = sc.nextInt();
-		b = sc.nextInt();
+		a = sc.nextFloat();
+		b = sc.nextFloat();
 
 		z1.assign(a, b);
 
 		System.out.print("Enter another Complex Number(real and imaginary parts), z2: ");
-		a = sc.nextInt();
-		b = sc.nextInt();
+		a = sc.nextFloat();
+		b = sc.nextFloat();
 
 		z2.assign(a, b);
 
