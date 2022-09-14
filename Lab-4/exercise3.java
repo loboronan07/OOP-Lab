@@ -1,4 +1,17 @@
-/* */
+/* Lab Exercise 3
+	Define a class to represent a Bank account. Include the following members. Data members:
+		1. Name of the depositor
+	        2. Account number.
+	        3. Type of account.
+	        4. Balance amount in the account.
+	        5. Rate of interest (static data)
+	Provide a default constructor and parameterized constructor to this class. Also provide Methods:
+		1 . To deposit amount.
+        	2. To withdraw amount after checking for minimum balance.
+        	3. To display all the details of an account holder.
+        	4. Display rate of interest (a static method)
+	Illustrate all the constructors as well as all the methods by defining objects.
+*/
 
 import java.util.*;
 

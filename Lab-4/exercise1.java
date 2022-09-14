@@ -1,4 +1,7 @@
-/* */
+/* Lab Exercise 1
+	Consider the already defined Complex class. Provide a default constructor and parameterized constructor to this class. 	
+	Also provide a display method. Illustrate all the constructors as well as the display method by defining Complex objects.
+*/
 
 import java.util.*;
 

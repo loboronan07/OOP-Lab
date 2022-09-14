@@ -1,4 +1,7 @@
-/* */
+/* Lab Exercise 2
+	Consider the already defined Time class. Provide a default constructor, and parameterized constructor. 
+	Also provide a display method. Illustrate all the constructors as well as the display method by defining Time objects.
+*/
 
 import java.util.*;
 
