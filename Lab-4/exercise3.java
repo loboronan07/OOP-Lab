@@ -20,7 +20,7 @@ class BankAccount {
 	int accountNumber;
 	String accountType;
 	double balance;
-	static double rateOfInterest = 6.0;
+	static double rateOfInterest = 6.;
 	private double minimumBalance = 2000.;
 
 	BankAccount() {
@@ -65,7 +65,7 @@ class BankAccount {
 		System.out.println("Balance: Rs." + this.balance);
 	}
 
-	static void diplayROI() {
+	static void displayROI() {
 		System.out.println("Rate of Interest: " + rateOfInterest + "%");
 	}
 }
@@ -88,15 +88,16 @@ class exercise3 {
 
 		System.out.println("Enter details for a new Bank Account: ");
 		System.out.print("Name: ");
-		name = sc.next();
+		name = sc.nextLine();
 		System.out.print("Account Number: ");
 		accountNumber = sc.nextInt();
 		System.out.print("Account Type: ");
-		accountType = sc.next();
+		sc.nextLine();
+		accountType = sc.nextLine();
 
 		BankAccount b2 = new BankAccount(name, accountNumber, accountType);
 		
-		System.out.println("Enter Your Choice:");
+		System.out.println("Available Operations:");
 		System.out.println("\t1.Deposit Money");
 		System.out.println("\t2.Withdraw Money");
 		System.out.println("\t3.Display Info");
@@ -104,7 +105,7 @@ class exercise3 {
 		System.out.println("\t5.Exit");
 
 		exit:while(true) {
-			System.out.print("Enter your choice: ");
+			System.out.print("\nEnter your choice: ");
 			choice = sc.nextInt();
 
 			switch (choice) {
@@ -123,7 +124,7 @@ class exercise3 {
 					b2.displayDetails();
 					break;
 				case 4:
-					BankAccount.diplayROI();
+					BankAccount.displayROI();
 					break;
 				case 5:
 					System.out.println("Thank You for Using our Services.");
@@ -132,7 +133,6 @@ class exercise3 {
 					System.out.println("Wrong Choice... Try Again.");
 					break;
 			}
-			System.out.println("\n");
 		}
 	}
 }

@@ -1,7 +1,7 @@
 /* Lab Exercise 4
-	Create a class called Counter that contains a static data member to count the number of Counter objects being created. 
-	Also define a static member fimction called showCount() which displays the number of objects created at any 
-	given point of time. Illustrate this.
+	Create a class called Counter that contains a static data member to count the number of 
+	Counter objects being created. Also define a static member function called showCount() 
+	which displays the number of objects created at any given point of time. Illustrate this.
 */
 
 import java.util.*;
@@ -14,7 +14,7 @@ class Counter {
 	}
 
 	static void showCount() {
-		System.out.println("Number of Counter objects created till now: " + count);
+		System.out.println("Number of Counter objects created: " + count);
 	}
 }
 
@@ -23,7 +23,7 @@ class exercise4 {
 		Scanner sc = new Scanner(System.in);
 		int n, choice;
 		Counter c;
-		System.out.println("Enter Choice: ");
+		System.out.println("Available Operations: ");
 		System.out.println("\t1.Create Counter Objects");
 		System.out.println("\t2.Counter Objects created till now");
 		System.out.println("\t3.Exit\n");

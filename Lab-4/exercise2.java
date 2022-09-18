@@ -24,7 +24,7 @@ class Time {
 		totalsecs %= 3600;
 		this.min = totalsecs / 60;
 		totalsecs %= 60;
-		this.min = totalsecs;
+		this.sec = totalsecs;
 	}
 
 	void display() {
