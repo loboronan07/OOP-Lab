@@ -1,5 +1,10 @@
 /* Lab Exercise 3
-
+	Add member fimctions to the above code that perfonn the following operations
+        	a) List all the students whose name starts with a particular character.
+        	b) List all the student names containing a palticular sub string.
+        	c) Change the full name in the object to name with just initials and family name. For example, 
+        		Prakash Kalingrao Aithal must be changed to P. K. Aithal and store it in the object. 
+        		Display modified objects.
 */
 
 import java.util.*;
@@ -30,9 +35,11 @@ class Student {
 		this.sem = sem;
 		this.gpa = gpa;
 		this.cgpa = 0;
-		for(int i=0; i<this.sem-1; i++) 
-			this.cgpa = this.cgpa + gpa[i];
-		this.cgpa = this.cgpa / (sem-1);
+		if(this.sem > 1) {
+			for(int i=0; i<this.sem-1; i++) 
+				this.cgpa = this.cgpa + gpa[i];
+			this.cgpa = this.cgpa / (sem-1);
+		}
 	}
 
 	void display() {
@@ -41,12 +48,14 @@ class Student {
 		System.out.println("Date of joining: " + this.doj.getTime());
 		System.out.println("Semester: " + this.sem);
 		System.out.println("CGPA: " + this.cgpa);
-		System.out.println("GPA: ");
-		for(int i = 0; i < this.gpa.length && i < 8; i++) 
-			System.out.print("Sem " + (i+1) + "\t");
-		System.out.println();
-		for(int i = 0; i < this.gpa.length && i < 8; i++) 
-			System.out.print(this.gpa[i] + "\t");
+		if(this.sem > 1) {
+			System.out.println("GPA: ");
+			for(int i = 0; i < this.gpa.length && i < 8; i++) 
+				System.out.print("Sem " + (i+1) + "\t");
+			System.out.println();
+			for(int i = 0; i < this.gpa.length && i < 8; i++) 
+				System.out.print(this.gpa[i] + "\t");
+		}
 		System.out.println("\n");
 	}
 
@@ -87,20 +96,22 @@ class Student {
 	}
 
 	public static void changeName(Student[] students) {
+		String name, temp;
+		int first, last;
 		for(int i=0; i<students.length; i++) {
-			String name = students[i].name;
-			String temp;
-			int first, last;
+			temp = students[i].name;
+			name = new String();
 			while(true) {
-				first = name.indexOf(" ");
-				last = name.lastIndexOf(" ");
+				first = temp.indexOf(" ");
+				last = temp.lastIndexOf(" ");
 				if(first < 0) 
 					break;
-				temp = new String(name);
-				name = name.charAt(0) + "." + temp.substring(first);
+				name = name + temp.charAt(0) + ". ";
+				temp = temp.substring(first+1);
 				if(first == last) 
 					break;
 			}
+			name = name + temp;
 			students[i].name = name;
 		}
 	}
@@ -136,13 +147,16 @@ class exercise3 {
 			System.out.print("Semester: ");
 			sem = sc.nextShort();
 
-			System.out.println("Enter GPA of each Semesters: ");
-			gpa = new float[sem-1];
-
-			for(int j = 0; j < sem-1; j++) {
-				System.out.print("Sem " + (j+1) + ": ");
-				gpa[j] = sc.nextFloat();
+			if(sem > 1) {
+				System.out.println("Enter GPA of each Semesters: ");
+				gpa = new float[sem-1];
+				for(int j = 0; j < sem-1; j++) {
+					System.out.print("Sem " + (j+1) + ": ");
+					gpa[j] = sc.nextFloat();
+				}
 			}
+			else 
+				gpa = null;
 
 			students[i] = new Student(name, dd, mm, yyyy, sem, gpa);
 		}
@@ -151,7 +165,7 @@ class exercise3 {
 		for(int i=0; i<students.length; i++) {
 			students[i].display();
 		}
-
+		
 		Student.sortBySem(students);
 
 		System.out.println("\n\n======= Student Details(Sorted by Semester and CGPA) =======\n");
@@ -165,18 +179,19 @@ class exercise3 {
 		for(int i=0; i<students.length; i++) {
 			students[i].display();
 		}
-
+		
+		System.out.println("===================================================\n");
 		System.out.println("Listing By Character: ");
-		System.out.println("Enter Character: ");
+		System.out.print("\tEnter Character: ");
 		char start = sc.next().charAt(0);
 		sc.nextLine();
 		Student.listByChar(students, start);
 
-		System.out.println("Listing By Sub String: ");
-		System.out.println("Enter String: ");
+		System.out.println("\nListing By Sub String: ");
+		System.out.print("\tEnter String: ");
 		String sub = sc.nextLine();
 		Student.listByString(students, sub);
-		
+
 		Student.changeName(students);
 
 		System.out.println("\n\n======= Student Details(After Changing Names to Initials) =======\n");

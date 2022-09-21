@@ -1,5 +1,20 @@
-/* Lab Exercise 2
-
+/* Lab Exercise 1
+	Design a class which represents a student. Every student record is made up of the following fields.
+		i) Registration number (int) 
+		ii) Full Name (String) 
+		iii) Date of joining (Gregorian calendar) 
+		iv) Semester (short)
+		v) GPA (float) 
+		vi) CGPA (float)
+	Whenever a student joins he will be given a new registration number. Registration number is calculated 
+	as follows. If year of joining is 2012 and he is the 80th student to join then his registration number 
+	will be 1280.
+	Write member functions to do the following.
+    		a) Provide default and parameterized constructors to this class
+    		b) Write display method which displays the record. Test the class by writing suitable main 	
+    			method.
+    		c) Create an an-ay of student record to store minimum of 5 records in it. Input the records and 
+    			display them.
 */
 
 import java.util.*;
@@ -52,35 +67,9 @@ class Student {
 		}
 		System.out.println("\n");
 	}
-
-	public static void sortBySem(Student[] students) {
-		Student temp;
-		for(int i=0; i<students.length-1; i++) {
-			for(int j=0; j<students.length-1-i; i++) {
-				if((students[i].sem > students[i+1].sem) || (students[i].sem == students[i+1].sem && students[i].cgpa > students[i+1].cgpa)) {
-					temp = students[i];
-					students[i] = students[i+1];
-					students[i+1] = temp;
-				}
-			}
-		}
-	}
-
-	public static void sortByName(Student[] students) {
-		Student temp;
-		for(int i=0; i<students.length-1; i++) {
-			for(int j=0; j<students.length-1-i; i++) {
-				if(students[i].name.compareTo(students[i+1].name) > 0) {
-					temp = students[i];
-					students[i] = students[i+1];
-					students[i+1] = temp;
-				}
-			}
-		}
-	}
 }
 
-class exercise2 {
+class exercise1 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String name;
@@ -121,20 +110,6 @@ class exercise2 {
 			students[i] = new Student(name, dd, mm, yyyy, sem, gpa);
 		}
 		System.out.println("\n\n======= Student Details =======\n");
-		for(int i=0; i<students.length; i++) {
-			students[i].display();
-		}
-
-		Student.sortBySem(students);
-
-		System.out.println("\n\n======= Student Details(Sorted by Semester and CGPA) =======\n");
-		for(int i=0; i<students.length; i++) {
-			students[i].display();
-		}
-
-		Student.sortByName(students);
-
-		System.out.println("\n\n======= Student Details(Sorted by Name) =======\n");
 		for(int i=0; i<students.length; i++) {
 			students[i].display();
 		}

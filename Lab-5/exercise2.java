@@ -1,5 +1,8 @@
-/* Lab Exercise 1
-
+/* Lab Exercise 2
+	    Perform the following operations by adding member functions to the program implemented in the above 
+	    question
+        	a) Sort the student records with respect to semester and CGPA.
+        	b) Sort the student record with respect to name.
 */
 
 import java.util.*;
@@ -52,9 +55,35 @@ class Student {
 		}
 		System.out.println("\n");
 	}
+
+	public static void sortBySem(Student[] students) {
+		Student temp;
+		for(int i=0; i<students.length-1; i++) {
+			for(int j=0; j<students.length-1-i; i++) {
+				if((students[i].sem > students[i+1].sem) || (students[i].sem == students[i+1].sem && students[i].cgpa > students[i+1].cgpa)) {
+					temp = students[i];
+					students[i] = students[i+1];
+					students[i+1] = temp;
+				}
+			}
+		}
+	}
+
+	public static void sortByName(Student[] students) {
+		Student temp;
+		for(int i=0; i<students.length-1; i++) {
+			for(int j=0; j<students.length-1-i; i++) {
+				if(students[i].name.compareTo(students[i+1].name) > 0) {
+					temp = students[i];
+					students[i] = students[i+1];
+					students[i+1] = temp;
+				}
+			}
+		}
+	}
 }
 
-class exercise1 {
+class exercise2 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String name;
@@ -95,6 +124,20 @@ class exercise1 {
 			students[i] = new Student(name, dd, mm, yyyy, sem, gpa);
 		}
 		System.out.println("\n\n======= Student Details =======\n");
+		for(int i=0; i<students.length; i++) {
+			students[i].display();
+		}
+
+		Student.sortBySem(students);
+
+		System.out.println("\n\n======= Student Details(Sorted by Semester and CGPA) =======\n");
+		for(int i=0; i<students.length; i++) {
+			students[i].display();
+		}
+
+		Student.sortByName(students);
+
+		System.out.println("\n\n======= Student Details(Sorted by Name) =======\n");
 		for(int i=0; i<students.length; i++) {
 			students[i].display();
 		}
