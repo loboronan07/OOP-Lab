@@ -60,10 +60,10 @@ class Student {
 		Student temp;
 		for(int i=0; i<students.length-1; i++) {
 			for(int j=0; j<students.length-1-i; i++) {
-				if((students[i].sem > students[i+1].sem) || (students[i].sem == students[i+1].sem && students[i].cgpa > students[i+1].cgpa)) {
-					temp = students[i];
-					students[i] = students[i+1];
-					students[i+1] = temp;
+				if((students[j].sem > students[j+1].sem) || (students[j].sem == students[j+1].sem && students[j].cgpa > students[j+1].cgpa)) {
+					temp = students[j];
+					students[j] = students[j+1];
+					students[j+1] = temp;
 				}
 			}
 		}
@@ -73,10 +73,10 @@ class Student {
 		Student temp;
 		for(int i=0; i<students.length-1; i++) {
 			for(int j=0; j<students.length-1-i; i++) {
-				if(students[i].name.compareTo(students[i+1].name) > 0) {
-					temp = students[i];
-					students[i] = students[i+1];
-					students[i+1] = temp;
+				if(students[j].name.compareTo(students[j+1].name) > 0) {
+					temp = students[j];
+					students[j] = students[j+1];
+					students[j+1] = temp;
 				}
 			}
 		}
