@@ -59,7 +59,7 @@ class Student {
 	public static void sortBySem(Student[] students) {
 		Student temp;
 		for(int i=0; i<students.length-1; i++) {
-			for(int j=0; j<students.length-1-i; i++) {
+			for(int j=0; j<students.length-1-i; j++) {
 				if((students[j].sem > students[j+1].sem) || (students[j].sem == students[j+1].sem && students[j].cgpa > students[j+1].cgpa)) {
 					temp = students[j];
 					students[j] = students[j+1];
@@ -72,7 +72,7 @@ class Student {
 	public static void sortByName(Student[] students) {
 		Student temp;
 		for(int i=0; i<students.length-1; i++) {
-			for(int j=0; j<students.length-1-i; i++) {
+			for(int j=0; j<students.length-1-i; j++) {
 				if(students[j].name.compareTo(students[j+1].name) > 0) {
 					temp = students[j];
 					students[j] = students[j+1];
