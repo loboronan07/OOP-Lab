@@ -70,7 +70,7 @@ public class exercise1 {
 					s.push(ele);
 				}
 				catch(PushException exc) {
-					System.out.println("Stack Overflow Error for Stack of size " + exc.size + "...");
+					System.out.println("Stack Overflow Error for Stack of Size " + exc.size + "...");
 				}
 			}
 			else if(choice == 2) {

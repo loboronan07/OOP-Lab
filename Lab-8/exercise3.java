@@ -19,8 +19,8 @@ class Student {
 	static int count = 0;
 
 	Student(String name, short dd, short mm, short yyyy) throws SeatsFilledException {
-		if(count >= 25) {
-			throw new SeatsFilledException(25);
+		if(count >= 3) {
+			throw new SeatsFilledException(3);
 		}
 
 		this.regno = (yyyy % 100) * 100 + count++;
@@ -36,7 +36,7 @@ class Student {
 	}
 }
 
-class exercise3 {
+public class exercise3 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String name;
@@ -74,5 +74,7 @@ class exercise3 {
 		for(int i=0; i<students.length; i++) 
 			if(students[i] != null)
 				students[i].display();
+			else 
+				break;
 	}
 }
