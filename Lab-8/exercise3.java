@@ -1,5 +1,9 @@
 /* Lab Exercise 3
-
+	Design a Student class with appropriate data members as in Lab 5. 
+	Provide your own exceptions namely Seats Filled Exception, which is thrown when 
+	Student registration number is >XX25 (where XX is last two digits of the year ofjoining).
+	Show the usage of this exception handling using Student objects in the main. 
+	(Note: Registration number must be a unique number)
 */
 
 import java.util.*;

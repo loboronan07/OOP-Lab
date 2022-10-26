@@ -1,5 +1,7 @@
 /* Lab Exercise 1
-
+	 Design a stack class. Provide your own stack exceptions namely Push Exception and Pop Exception, 
+	 which throw exceptions when the stack is full and when the stack is empty respectively. 
+	 Show the usage of these exceptions in handling a stack object in the main.
 */
 
 import java.util.*;
