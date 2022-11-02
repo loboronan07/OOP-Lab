@@ -13,30 +13,27 @@ class SumArr implements Runnable{
 		name = String.format("Sum for Row %d", r);
 		t = new Thread(this, name);
 		this.arr = arr;
-		System.out.println("Starting Thread to compute " + t.getName());
+		System.out.println("Starting Thread to compute " + name);
 		t.start();
 	}
 
 	public void run() {
 		sum();
+		System.out.println(name + " exiting...");
 	}
 
 	void sum() {
 		s = 0; 
-		try {
-			for(int i=0; i<arr.length; i++) {
-				s += arr[i];
-				t.sleep(500);
+		for(int i=0; i<arr.length; i++) {
+			s += arr[i];
+			try {
+				Thread.sleep(100);
 			}
-			System.out.println(t.getName() + " is " + s);
+			catch(InterruptedException e) {
+				System.out.println(name + " Interrupted...");
+			}
 		}
-		catch(InterruptedException e) {
-			System.out.println(t.getName() + " Interrupted...");
-		}
-		
-		System.out.println(t.getName() + " exiting...");
 	}
-
 }
 
 public class exercise2 {
@@ -65,6 +62,12 @@ public class exercise2 {
 			for(int i=0; i<m; i++) 
 				if(threads[i].t.isAlive()) {
 					flag = true;
+					try {
+						Thread.sleep(200);
+					}
+					catch(InterruptedException e) {
+						System.out.println("Main Thread Interrupted...");
+					}
 					continue;
 				}
 		} while(flag);

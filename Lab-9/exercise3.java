@@ -8,15 +8,19 @@ class TickTock {
 
 	TickTock() {
 		state = 0;
-		stop = 1;
+		stop = 0;
 	}
 
-	void tick(int n) {
-		for(int i=0; i<n; i++) {
+	synchronized void tick(int n) {
+		if(stop) {
 			state = 0;
-			System.out.print("Tick ");
 			notify();
+			return;
 		}
+
+		System.out.print("Tick ");
+		state = 0;
+		
 	}
 
 	void tock(int n) {
