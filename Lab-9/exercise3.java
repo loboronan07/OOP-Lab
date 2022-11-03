@@ -2,72 +2,119 @@
 
 */
 
-class TickTock {
-	int state;
-	int stop;
+import java.util.*;
 
-	TickTock() {
-		state = 0;
-		stop = 0;
+class NameStore {
+	boolean set;
+	boolean stop;
+	String name;
+
+	NameStore() {
+		stop = false;
+		set = false;
+		name = null;
 	}
 
-	synchronized void tick(int n) {
+	synchronized void set(String n) {
+		set = true;
+
+		if(n.equalsIgnoreCase("stop")) {
+			stop = true;
+			notify();
+			return;
+		}
+		name = new String(n);
+		notify();
+
+		try {
+			while(set) 
+				wait();
+		}
+		catch(InterruptedException e) {
+			System.out.println("Thread Interrupted in Set Method...");
+		}
+	}
+
+	synchronized void put() {
+		while(name == null) 
+			try {
+				wait();
+			}
+			catch(InterruptedException e) {
+				System.out.println("Thread Interrupted in Put Method...");
+			}
+			
+
+		set = false;
 		if(stop) {
-			state = 0;
 			notify();
 			return;
 		}
 
-		System.out.print("Tick ");
-		state = 0;
-		
-	}
+		System.out.println("Recieved name as " + name + "...");
 
-	void tock(int n) {
-		for(int i=0; i<n; i++) {
-			state = 1; 
-			System.out.println("Tock");
-			notify();
+		notify();
+
+		try {
+			while(!set) 
+				wait();
 		}
-		stop = 1;
+		catch(InterruptedException e) {
+			System.out.println("Thread Interrupted in Put Method...");
+		}
 	}
 }
 
-class Producer extends Thread {
-	TickTock tck;
-	int n;
+class Producer implements Runnable {
+	Thread thrd;
+	NameStore ns;
 
-	Producer(TickTock tck, int n) {
-		this.tck = tck;
-		this.n = n;
-		start();
+	Producer(NameStore obj) {
+		thrd = new Thread(this);
+		ns = obj;
+		thrd.start();
 	}
 
 	public void run() {
-		tck.tick(n);
+		Scanner sc = new Scanner(System.in);
+		String name;
+		do {
+			System.out.print("Enter a Name(\"stop\" to exit): ");
+			name = sc.nextLine();
+			ns.set(name);
+		} while(!ns.stop);
 	}
 }
 
-class Consumer extends Thread {
-	TickTock tck;
-	int n;
+class Consumer implements Runnable {
+	Thread thrd;
+	NameStore ns;
 
-	Consumer(TickTock tck, int n) {
-		this.tck = tck;
-		this.n = n;
-		start();
+	Consumer(NameStore obj) {
+		thrd = new Thread(this);
+		ns = obj;
+		thrd.start();
 	}
 
 	public void run() {
-		tck.tock(n);
+		while(!ns.stop) {
+			ns.put();
+		}
 	}
 }
 
-
-public class exercise3 {
+class exercise3new {
 	public static void main(String[] args) {
-		TickTock tck = new TickTock();
-		Producer p = new Producer(tck, 10);
-		Consumer c = new Consumer(tck ,10);
+		NameStore m = new NameStore();
+		Producer p = new Producer(m);
+		Consumer c = new Consumer(m);
+
+		try {
+			p.thrd.join();
+			c.thrd.join();
+		} 
+		catch(InterruptedException e) {
+			System.out.println("Main Thread Interrupted...");
+		}
 	}
 }
