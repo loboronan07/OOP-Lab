@@ -1,5 +1,8 @@
 /* Lab Exercise 2 
-
+	Write and execute a java program to create and initialize a matrix of integers. 
+	Create n threads( by implementing Runnable interface) where n is equal to the number of rows in the matrix. 
+	Each of these threads should compute a distinct row sum. 
+	The main thread computes the complete sum by looking into the partial sums given by the threads.
 */
 
 import java.util.*;

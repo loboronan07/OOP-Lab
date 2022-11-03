@@ -1,5 +1,5 @@
 /* Lab Exercise 3
-
+	Write and execute a java program to implement a producer and consumer problem using Inter-thread communication.
 */
 
 import java.util.*;

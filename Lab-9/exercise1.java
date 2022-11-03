@@ -1,5 +1,6 @@
 /* Lab Exercise 1
-
+	Create a class by extending Thread Class to print a multiplication table of a number supplied as parameter. 
+	Create another class Tables which will instantiate two objects of the above class to print multiplication table of 5 and 7.
 */
 
 class Multiplication extends Thread {
