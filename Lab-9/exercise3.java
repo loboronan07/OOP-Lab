@@ -103,7 +103,7 @@ class Consumer implements Runnable {
 	}
 }
 
-class exercise3new {
+class exercise3 {
 	public static void main(String[] args) {
 		NameStore m = new NameStore();
 		Producer p = new Producer(m);
