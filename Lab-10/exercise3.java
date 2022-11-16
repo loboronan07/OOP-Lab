@@ -72,42 +72,79 @@ class LinkedList<T> {
 class exercise3 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		LinkedList<Integer> ll = new LinkedList<Integer>();
 
-		Integer choice, ele;
+		LinkedList<Integer> intLL = new LinkedList<Integer>();
+		LinkedList<Double> dblLL = new LinkedList<Double>();
 
-		System.out.println("Avaliable Operations: ");
-		System.out.println("\t1. Insert to Linked List");
-		System.out.println("\t2. Delete from Linked List");
-		System.out.println("\t3. Display Linked List");
-		System.out.println("\t4. Exit");
+		Integer choice, llchoice, intele;
+		Double dblele;
 
 		while(true) {
-			System.out.print("Enter choice: ");
+			System.out.println("\n\nAvailable Linked Lists: ");
+			System.out.println("\t1. Integer LL");
+			System.out.println("\t2. Double LL");
+			System.out.print("Enter Linked List Choice(Hit 0 to exit): ");
+			llchoice = sc.nextInt();
+
+			if(llchoice == 0) 
+				break;
+
+			if(llchoice != 1 && llchoice != 2) {
+				System.out.println("Invalid Choice... Try Again...");
+				continue;
+			}
+
+			System.out.println("Avaliable Operations: ");
+			System.out.println("\t1. Insert at end to Linked List");
+			System.out.println("\t2. Delete from end of Linked List");
+			System.out.println("\t3. Display Linked List");
+			System.out.print("Enter Choice(Hit 0 to return): ");
 			choice = sc.nextInt();
 
+			if(choice == 0) 
+				continue;
+
 			if(choice == 1) {
-				System.out.print("Enter integer to insert: ");
-				ele = sc.nextInt();
-				ll.insert(ele);
-			}
-			else if(choice == 2) {
-				ele = ll.delete();
-				if(ele != null) {
-					System.out.println(ele + " was deleted from the Linked List...");
+				System.out.print("Enter value to insert: ");
+				if(llchoice == 1) {
+					intele = sc.nextInt();
+					intLL.insert(intele);
 				}
 				else {
-					System.out.println("Linked List is Empty...");
+					dblele = sc.nextDouble();
+					dblLL.insert(dblele);
+				}
+			}
+			else if(choice == 2) {
+				if(llchoice == 1) {
+					intele = intLL.delete();
+					if(intele != null) {
+						System.out.println(intele + " was deleted from the Linked List...");
+					}
+					else {
+						System.out.println("Linked List is Empty...");
+					}	
+				}
+				else {
+					dblele = dblLL.delete();
+					if(dblele != null) {
+						System.out.println(dblele + " was deleted from the Linked List...");
+					}
+					else {
+						System.out.println("Linked List is Empty...");
+					}
 				}
 			}
 			else if(choice == 3) {
-				ll.display();
-			}
-			else if(choice == 4) {
-				break;
+				if(llchoice == 1) {
+					intLL.display();
+				}
+				else {
+					dblLL.display();
+				}
 			}
 			else {
-				System.out.println("Invalid Operation. Please Try Again...");
+				System.out.println("Invalid Choice... Try Again...");
 			}
 		}
 	}
