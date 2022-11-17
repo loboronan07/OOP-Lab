@@ -1,3 +1,8 @@
+/* Lab Exercise 2
+	Define a simple generic stack class and show the use of the generic class for two different class types 
+	Student and Employee class objects.
+*/
+
 import java.util.*;
 
 class Person {

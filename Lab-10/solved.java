@@ -1,3 +1,8 @@
+/* Solved Exercise
+	Program defines two classes, the generic class Gen, and the second is GenDemo, which uses Gen. 
+	Here, T is a type parameter that will be replaced by a real type when an object of type Gen is created.
+*/
+
 class Gen<T> {
 	T ob;
 

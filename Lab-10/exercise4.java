@@ -1,3 +1,7 @@
+/* Lab Exercise 4
+    Write a program to demonstrate the use of wildcard arguments.
+*/
+
 import java.util.Scanner;
 
 class GenArr<T> {

@@ -1,3 +1,8 @@
+/* Lab Exercise 3
+	Define a generic List class to implement a singly linked list and show the use of the generic class 
+	for two different class types Integer and Double class objects.
+*/
+
 import java.util.*;
 
 class Node<T> {

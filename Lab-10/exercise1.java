@@ -1,3 +1,7 @@
+/* Lab Exercise 1
+	Write a generic method to exchange the positions of two different elements in an array.
+*/
+
 import java.util.*;
 
 class GenArr<T> {
