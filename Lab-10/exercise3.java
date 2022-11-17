@@ -32,24 +32,32 @@ class LinkedList<T> {
 		temp.next = new Node<T>(ele);
 	}
 
-	T delete() {
-		T ele = null;
+	void delete(T ele) {
 		if(head == null) {
-			ele = null;
+			System.out.println("Linked List is Empty...");
+			return;
 		}
-		else if(head.next == null) {
-			ele = head.val;
-			head = null;
+
+		Node<T> curr = head;
+		Node<T> prev = null;
+		
+		while(curr != null && curr.val != ele ) {
+			prev = curr;
+			curr = curr.next;
+		}
+
+		if(curr == null) {
+			System.out.println(ele + " does not exist in the Linked List...");
+			return;
+		}
+
+		if(curr == head) {
+			head = head.next;
 		}
 		else {
-			Node<T> temp = head;
-			while(temp.next.next != null) {
-				temp = temp.next;
-			}
-			ele = temp.next.val;
-			temp.next = null;		
+			prev.next = curr.next;
 		}
-		return ele;
+		System.out.println(ele + " was deleted from the linked list...");
 	}
 
 	void display() {
@@ -95,8 +103,8 @@ class exercise3 {
 			}
 
 			System.out.println("Avaliable Operations: ");
-			System.out.println("\t1. Insert at end to Linked List");
-			System.out.println("\t2. Delete from end of Linked List");
+			System.out.println("\t1. Insert to Linked List");
+			System.out.println("\t2. Delete value from Linked List");
 			System.out.println("\t3. Display Linked List");
 			System.out.print("Enter Choice(Hit 0 to return): ");
 			choice = sc.nextInt();
@@ -116,23 +124,14 @@ class exercise3 {
 				}
 			}
 			else if(choice == 2) {
+				System.out.print("Enter value to delete: ");
 				if(llchoice == 1) {
-					intele = intLL.delete();
-					if(intele != null) {
-						System.out.println(intele + " was deleted from the Linked List...");
-					}
-					else {
-						System.out.println("Linked List is Empty...");
-					}	
+					intele = sc.nextInt();
+					intLL.delete(intele);
 				}
 				else {
-					dblele = dblLL.delete();
-					if(dblele != null) {
-						System.out.println(dblele + " was deleted from the Linked List...");
-					}
-					else {
-						System.out.println("Linked List is Empty...");
-					}
+					dblele = sc.nextDouble();
+					dblLL.delete(dblele);
 				}
 			}
 			else if(choice == 3) {
